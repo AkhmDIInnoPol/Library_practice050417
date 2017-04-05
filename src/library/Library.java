@@ -24,6 +24,14 @@ public class Library {
     }
 
 
+    public Set<BookInstance> getStore() {
+        return store;
+    }
+
+    public void setStore(Set<BookInstance> store) {
+        this.store = store;
+    }
+
     public void buyBook(String title, String author,
                         String isbn, int quantity, int year) {
         Book newBook = new Book(author, title, year, isbn);

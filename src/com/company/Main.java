@@ -2,6 +2,7 @@ package com.company;
 
 import library.Library;
 import library.models.Book;
+import library.models.BookInstance;
 import library.models.Booking;
 import library.models.Reader;
 import library.utils.DataManager;
@@ -30,17 +31,72 @@ public class Main {
         //testReaderSerialization(library);
 
 //        =============== Test3 =================
+//        try {
+//            testBookingSerialization(library);
+//        }
+//        catch (ParseException e)
+//        {
+//            e.printStackTrace();
+//        }
+
+
+//      =============== Test4 =================
         try {
-            testBookingSerialization(library);
+            testBookInstanceSerialization(library);
         }
         catch (ParseException e)
         {
             e.printStackTrace();
         }
-            
 
 
     }
+
+
+
+
+
+
+    public static void testBookInstanceSerialization(Library library) throws ParseException
+    {
+        library.buyBook("Intro to Java", "Petrov", "124587ps", 5, 1987);
+        library.buyBook("Intro to C", "Stepanov", "234162ps", 2, 1999);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date startDate1 = simpleDateFormat.parse("2017-04-05");
+        Date finishDate1 = simpleDateFormat.parse("2017-05-05");
+        library.takeBook("John", "Ivanovich",
+                "Conor", 97094325, "Intro to Java",
+                startDate1, finishDate1);
+
+
+        Date startDate2 = simpleDateFormat.parse("2017-04-01");
+        Date finishDate2 = simpleDateFormat.parse("2017-06-14");
+        library.takeBook("Sara", "Petrovich", "Conor",
+                97092389, "Intro to C",
+                startDate2, finishDate2);
+
+        library.returnBook("John", "Ivanovich", "Conor", 97094325, "Intro to Java");
+
+
+        DataManager.serializeToFileBookInstance(library.getStore());
+
+
+        // ============================= Show data =======================
+
+        Library library2 = new Library();
+        Set<BookInstance> store = DataManager.deserializeFromFileBookInstance();
+        library2.setStore(store);
+
+        library2.showAllData();
+    }
+
+
+
+
+
+
 
 
 
