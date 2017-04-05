@@ -1,24 +1,29 @@
 package library.models;
 
-import java.io.Serializable;
+import java.io.*;
 
 /**
  * Created by admin on 05.04.2017.
  */
-public class Book implements Serializable {
+public class Book implements Externalizable {
 
     private String author;
     private String title;
     private int year;
     private String ISBN;
+    private String signature;
     private static long serialVersionUID = 2L;
 
 
-    public Book(String author, String title, int year, String ISBN) {
+    public Book() {
+    }
+
+    public Book(String author, String title, int year, String ISBN, String signature) {
         this.author = author;
         this.title = title;
         this.year = year;
         this.ISBN = ISBN;
+        this.signature = signature;
     }
 
     @Override
@@ -47,7 +52,8 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return author + " @" + title + " @" + year + " @" + ISBN;
+        return author + " @" + title + " @" +
+                                year + " @" + ISBN + " @" + signature;
     }
 
     public String getTitle() {
@@ -80,5 +86,24 @@ public class Book implements Serializable {
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
+    }
+
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(author);
+        out.writeObject(title);
+        out.writeInt(year);
+        out.writeObject(ISBN);
+        out.writeObject(signature);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        author = (String) in.readObject();
+        title = (String) in.readObject();
+        year = in.readInt();
+        ISBN = (String) in.readObject();
+        signature = (String) in.readObject();
     }
 }

@@ -33,8 +33,8 @@ public class Library {
     }
 
     public void buyBook(String title, String author,
-                        String isbn, int quantity, int year) {
-        Book newBook = new Book(author, title, year, isbn);
+                        String isbn, int quantity, int year, String signature) {
+        Book newBook = new Book(author, title, year, isbn, signature);
         catalog.add(newBook);
 
         for (int i = 0; i < quantity; i++) {
