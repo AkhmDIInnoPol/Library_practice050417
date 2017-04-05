@@ -15,6 +15,54 @@ public class DataManager {
 
 
 
+
+
+    public static void externalizeToFileBookInstance(Set<BookInstance> bookInstances)
+    {
+        try(FileOutputStream fos = new FileOutputStream("bookInstances.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (BookInstance bookInstance: bookInstances)
+            {
+                oos.writeObject(bookInstance);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    public static Set<BookInstance> unexternalizeFromFileBookInstance()
+    {
+        Set<BookInstance> bookInstances = new HashSet<>();
+        try(FileInputStream fis = new FileInputStream("bookInstances.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
+            BookInstance bookInstance = null;
+            while ( (bookInstance = (BookInstance) ois.readObject()) != null)
+            {
+                bookInstances.add(bookInstance);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            return bookInstances;
+        }
+
+    }
+
+
+
+
     public static void externalizeToFileBooking(Set<Booking> bookings)
     {
         try(FileOutputStream fos = new FileOutputStream("bookings.txt");

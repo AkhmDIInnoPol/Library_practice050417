@@ -38,7 +38,7 @@ public class Library {
         catalog.add(newBook);
 
         for (int i = 0; i < quantity; i++) {
-            BookInstance bookInstance = new BookInstance(newBook, UUID.randomUUID());
+            BookInstance bookInstance = new BookInstance(newBook, UUID.randomUUID(), signature);
             store.add(bookInstance);
         }
     }

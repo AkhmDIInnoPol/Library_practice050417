@@ -37,18 +37,72 @@ public class Main {
 
 
         //  ============= Test3 ==============
+//        try {
+//            testBookingExternalization(library);
+//        }
+//        catch (ParseException e)
+//        {
+//            e.printStackTrace();
+//        }
+
+
+
+        //  ============= Test4 ==============
         try {
-            testBookingExternalization(library);
+            testBookInstanceExternalization(library);
         }
         catch (ParseException e)
         {
             e.printStackTrace();
         }
 
-
-
     }
 
+
+
+
+
+
+
+
+    public static void testBookInstanceExternalization(Library library) throws ParseException
+    {
+        library.buyBook("Intro to Java", "Petrov",
+                            "124587ps", 5, 1987, SIGNATURE);
+        library.buyBook("Intro to C", "Stepanov",
+                "234162ps", 2, 1999, SIGNATURE);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date startDate1 = simpleDateFormat.parse("2017-04-05");
+        Date finishDate1 = simpleDateFormat.parse("2017-05-05");
+        library.takeBook("John", "Ivanovich",
+                "Conor", 97094325, "Intro to Java",
+                startDate1, finishDate1, SIGNATURE);
+
+
+        Date startDate2 = simpleDateFormat.parse("2017-04-01");
+        Date finishDate2 = simpleDateFormat.parse("2017-06-14");
+        library.takeBook("Sara", "Petrovich", "Conor",
+                97092389, "Intro to C",
+                startDate2, finishDate2, SIGNATURE);
+
+        library.returnBook("John", "Ivanovich",
+                                "Conor", 97094325,
+                                    "Intro to Java", SIGNATURE);
+
+
+        DataManager.externalizeToFileBookInstance(library.getStore());
+
+
+        // ============================= Show data =======================
+
+        Library library2 = new Library();
+        Set<BookInstance> store = DataManager.unexternalizeFromFileBookInstance();
+        library2.setStore(store);
+
+        library2.showAllData();
+    }
 
 
 
