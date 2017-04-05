@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class DataManager {
 
-    public static void  serializeToFile(Set<Book> books)
+    public static void serializeToFileBooks(Set<Book> books)
     {
         try(FileOutputStream fos = new FileOutputStream("books.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
@@ -29,7 +29,7 @@ public class DataManager {
 
 
 
-    public static Set<Book> deserializeFromFile()
+    public static Set<Book> deserializeFromFileBooks()
     {
         Set<Book> books = new HashSet<>();
         try(FileInputStream fis = new FileInputStream("books.txt");
@@ -54,5 +54,13 @@ public class DataManager {
 
 
     }
+
+
+
+
+
+
+
+
 
 }

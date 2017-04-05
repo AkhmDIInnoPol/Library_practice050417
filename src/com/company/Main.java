@@ -5,11 +5,19 @@ import library.models.Book;
 import library.models.Reader;
 import library.utils.DataManager;
 
-import java.util.Set;
-
 public class Main {
 
     public static void main(String[] args) {
+
+        testBookSerialization();
+
+    }
+
+
+
+
+    public static void testBookSerialization()
+    {
         Library library = new Library();
 
 
@@ -27,7 +35,7 @@ public class Main {
 
 
 
-        DataManager.serializeToFile(library.getCatalog());
+        DataManager.serializeToFileBooks(library.getCatalog());
 
 
 
@@ -40,7 +48,7 @@ public class Main {
 
         Library library2 = new Library();
 
-        for (Book book:DataManager.deserializeFromFile()
+        for (Book book:DataManager.deserializeFromFileBooks()
                 ) {
             library2.buyBook(book.getTitle(), book.getAuthor(), book.getISBN(), 1, book.getYear());
         }
