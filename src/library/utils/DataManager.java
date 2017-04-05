@@ -4,6 +4,7 @@ import library.models.*;
 import library.models.Reader;
 
 import java.io.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,51 @@ import java.util.Set;
 public class DataManager {
 
 
+
+
+    public static <T> void externalizeObj(Collection<T> objects, Class className)
+    {
+
+        String classNameStr = className.getSimpleName();
+
+        try(FileOutputStream fos = new FileOutputStream(classNameStr + ".txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (T object: objects)
+            {
+                oos.writeObject(object);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static <T> Collection<T> unexternalizeFromFileObject(Collection<T> emptyCollection)
+    {
+        Collection<T> objects = emptyCollection;
+        try(FileInputStream fis = new FileInputStream("bookInstances.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
+            T object = null;
+            while ( (object = (T) ois.readObject()) != null)
+            {
+                objects.add(object);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            return objects;
+        }
+
+    }
 
 
 
@@ -31,6 +77,9 @@ public class DataManager {
             e.printStackTrace();
         }
     }
+
+
+
 
 
 

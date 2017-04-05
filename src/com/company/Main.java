@@ -10,6 +10,7 @@ import library.utils.DataManager;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
@@ -49,7 +50,7 @@ public class Main {
 
         //  ============= Test4 ==============
         try {
-            testBookInstanceExternalization(library);
+            testBookInstanceExternalizationUniversClass(library);
         }
         catch (ParseException e)
         {
@@ -57,6 +58,56 @@ public class Main {
         }
 
     }
+
+
+
+
+
+    public static void testBookInstanceExternalizationUniversClass(Library library)
+            throws ParseException
+    {
+        library.buyBook("Intro to Java", "Petrov",
+                "124587ps", 5, 1987, SIGNATURE);
+        library.buyBook("Intro to C", "Stepanov",
+                "234162ps", 2, 1999, SIGNATURE);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date startDate1 = simpleDateFormat.parse("2017-04-05");
+        Date finishDate1 = simpleDateFormat.parse("2017-05-05");
+        library.takeBook("John", "Ivanovich",
+                "Conor", 97094325, "Intro to Java",
+                startDate1, finishDate1, SIGNATURE);
+
+
+        Date startDate2 = simpleDateFormat.parse("2017-04-01");
+        Date finishDate2 = simpleDateFormat.parse("2017-06-14");
+        library.takeBook("Sara", "Petrovich", "Conor",
+                97092389, "Intro to C",
+                startDate2, finishDate2, SIGNATURE);
+
+        library.returnBook("John", "Ivanovich",
+                "Conor", 97094325,
+                "Intro to Java", SIGNATURE);
+
+
+        DataManager.externalizeObj(library.getStore(), BookInstance.class);
+
+
+
+        // ============================= Show data =======================
+
+        Library library2 = new Library();
+        Set<BookInstance> emptyCollection = new HashSet<>();
+        Set<BookInstance> store = (Set<BookInstance>) DataManager.unexternalizeFromFileObject(emptyCollection);
+        library2.setStore(store);
+
+        library2.showAllData();
+    }
+
+
+
+
 
 
 
