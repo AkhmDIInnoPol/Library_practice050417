@@ -29,6 +29,7 @@ public class Library {
                     String isbn, int quantity, int year)
     {
         Book newBook = new Book(author, title, year, isbn);
+        catalog.add(newBook);
 
         for (int i = 0; i < quantity; i++)
         {
