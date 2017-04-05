@@ -16,8 +16,7 @@ public class Library {
     private Set<Booking> bookings;
 
 
-    public Library()
-    {
+    public Library() {
         catalog = new HashSet<>(1024);
         store = new HashSet<>(4096);
         readers = new HashSet<>(512);
@@ -26,19 +25,26 @@ public class Library {
 
 
     public void buyBook(String title, String author,
-                    String isbn, int quantity, int year)
-    {
+                        String isbn, int quantity, int year) {
         Book newBook = new Book(author, title, year, isbn);
         catalog.add(newBook);
 
-        for (int i = 0; i < quantity; i++)
-        {
+        for (int i = 0; i < quantity; i++) {
             BookInstance bookInstance = new BookInstance(newBook, UUID.randomUUID());
             store.add(bookInstance);
         }
     }
 
 
+    public Set<Reader> getReaders() {
+        return readers;
+    }
+
+    public void registerReader(Reader reader)
+    {
+        readers.add(reader);
+
+    }
 
 
 

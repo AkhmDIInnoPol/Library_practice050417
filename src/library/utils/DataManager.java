@@ -1,6 +1,7 @@
 package library.utils;
 
-import library.models.Book;
+import library.models.*;
+import library.models.Reader;
 
 import java.io.*;
 import java.util.HashSet;
@@ -57,9 +58,49 @@ public class DataManager {
 
 
 
+    public static void serializeToFileReaders(Set<Reader> readers)
+    {
+        try(FileOutputStream fos = new FileOutputStream("readers.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (Reader reader: readers)
+            {
+                oos.writeObject(reader);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
 
+
+    public static Set<Reader> deserializeFromFileReaders()
+    {
+        Set<Reader> readers = new HashSet<>();
+        try(FileInputStream fis = new FileInputStream("readers.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
+            Reader reader = null;
+            while ( (reader = (Reader) ois.readObject()) != null)
+            {
+                readers.add(reader);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            return readers;
+        }
+
+
+    }
 
 
 

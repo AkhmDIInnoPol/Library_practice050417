@@ -1,9 +1,11 @@
 package library.models;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 05.04.2017.
  */
-public class Reader {
+public class Reader implements Serializable {
 
     private final int GOOD_DISTRIBUTION_NUMBER = 32;
 
@@ -11,6 +13,7 @@ public class Reader {
     private String firstName;
     private String secondName;
     private String lastName;
+    private static long serialVersionUID = 1L;
 
 
     public Reader(long passportNumber, String firstName, String secondName, String lastName) {

@@ -5,13 +5,55 @@ import library.models.Book;
 import library.models.Reader;
 import library.utils.DataManager;
 
+import java.util.Set;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        testBookSerialization();
+        Library library = new Library();
+        //testBookSerialization();
+        testReaderSerialization(library);
 
     }
+
+
+
+
+
+    public static void testReaderSerialization(Library library)
+    {
+
+
+        Reader reader = new Reader(97094325, "John", "Ivanovich", "Conor");
+        Reader reader2 = new Reader(97092389, "Sara", "Petrovich", "Conor");
+
+        library.registerReader(reader);
+        library.registerReader(reader2);
+
+        Set<Reader> readers = library.getReaders();
+
+        DataManager.serializeToFileReaders(readers);
+
+
+
+
+
+
+        Library library2 = new Library();
+
+        Set<Reader> readers2 = DataManager.deserializeFromFileReaders();
+
+
+        for (Reader readerDes:readers2
+             ) {
+            library2.registerReader(readerDes);
+        }
+
+        library2.showAllData();
+    }
+
+
 
 
 
