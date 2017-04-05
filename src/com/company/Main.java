@@ -41,13 +41,13 @@ public class Main {
 
 
 //      =============== Test4 =================
-        try {
-            testBookInstanceSerialization(library);
-        }
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
+//        try {
+//            testBookInstanceSerialization(library);
+//        }
+//        catch (ParseException e)
+//        {
+//            e.printStackTrace();
+//        }
 
 
     }

@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a09213-06dc-4fca-8efc-26d7961b5eb0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bookInstances.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson_050417/com/company/Main.class" afterPath="$PROJECT_DIR$/out/production/Lesson_050417/com/company/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson_050417/library/Library.class" afterPath="$PROJECT_DIR$/out/production/Lesson_050417/library/Library.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Lesson_050417/library/utils/DataManager.class" afterPath="$PROJECT_DIR$/out/production/Lesson_050417/library/utils/DataManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Main.java" afterPath="$PROJECT_DIR$/src/com/company/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Library.java" afterPath="$PROJECT_DIR$/src/library/Library.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/utils/DataManager.java" afterPath="$PROJECT_DIR$/src/library/utils/DataManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +19,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+            <state relative-caret-position="148">
+              <caret line="49" column="11" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="49" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -635,12 +629,12 @@
       <updated>1491377259252</updated>
       <workItem from="1491377263364" duration="12511000" />
       <workItem from="1491395363871" duration="77000" />
-      <workItem from="1491395588173" duration="7393000" />
+      <workItem from="1491395588173" duration="7949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19981000" />
+    <option name="totallyTimeSpent" value="20537000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -982,8 +976,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+        <state relative-caret-position="148">
+          <caret line="49" column="11" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="49" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
