@@ -51,7 +51,7 @@ public class Library {
 
     public void takeBook(String firstName, String secondName,
                          String lastName, long pasportNumber,
-                         String title)
+                         String title, Date startDate, Date finishDate)
 
     {
         Object[] reader = readers.stream()
@@ -81,7 +81,7 @@ public class Library {
             System.out.println("No such book");
             return;
         }
-        Booking booking = new Booking(bookInstance, tempReader, new Date(), new Date());
+        Booking booking = new Booking(bookInstance, tempReader, startDate, finishDate);
         bookings.add(booking);
 
         store.remove(bookInstance);
