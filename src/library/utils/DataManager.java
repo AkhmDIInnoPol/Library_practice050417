@@ -104,4 +104,55 @@ public class DataManager {
 
 
 
+
+
+    public static void serializeToFileBooking(Set<Booking> bookings)
+    {
+        try(FileOutputStream fos = new FileOutputStream("bookings.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (Booking booking: bookings)
+            {
+                oos.writeObject(booking);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    public static Set<Booking> deserializeFromFileBookings()
+    {
+        Set<Booking> bookings = new HashSet<>();
+        try(FileInputStream fis = new FileInputStream("bookings.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
+            Booking booking = null;
+            while ( (booking = (Booking) ois.readObject()) != null)
+            {
+                bookings.add(booking);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            return bookings;
+        }
+
+
+    }
+
+
+
+
+
+
 }

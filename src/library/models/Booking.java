@@ -1,17 +1,19 @@
 package library.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by admin on 05.04.2017.
  */
-public class Booking {
+public class Booking implements Serializable {
 
     private BookInstance bookInstance;
     private Reader reader;
     private Date startDate;
     private Date finishDate;
     private Date returnDate;
+    private static long serialVersionUID = 1L;
 
 
     public Booking(BookInstance bookInstance, Reader reader, Date startDate, Date finishDate) {

@@ -88,6 +88,13 @@ public class Library {
     }
 
 
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
     public void returnBook(String firstName, String secondName,
                            String lastName, long pasportNumber,

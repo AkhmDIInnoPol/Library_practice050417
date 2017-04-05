@@ -2,6 +2,7 @@ package com.company;
 
 import library.Library;
 import library.models.Book;
+import library.models.Booking;
 import library.models.Reader;
 import library.utils.DataManager;
 
@@ -15,16 +16,74 @@ public class Main {
     public static void main(String[] args) {
 
         Library library = new Library();
-        //testBookSerialization();
-        testReaderSerialization(library);
+
+//         ============= Test1 ==============
+//        try {
+            //testBookSerialization();
+//        }
+//        catch (ParseException e)
+//        {
+//            e.printStackTrace();
+//        }
+
+//        ============= Test2 =================
+        //testReaderSerialization(library);
+
+//        =============== Test3 =================
+        try {
+            testBookingSerialization(library);
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+            
+
 
     }
 
 
 
 
-    public static void testBookingSerialization(Library library)
+    public static void testBookingSerialization(Library library) throws ParseException
     {
+
+
+        library.buyBook("Intro to Java", "Petrov", "124587ps", 5, 1987);
+        library.buyBook("Intro to C", "Stepanov", "234162ps", 2, 1999);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date startDate1 = simpleDateFormat.parse("2017-04-05");
+        Date finishDate1 = simpleDateFormat.parse("2017-05-05");
+        library.takeBook("John", "Ivanovich",
+                "Conor", 97094325, "Intro to Java",
+                startDate1, finishDate1);
+
+
+        Date startDate2 = simpleDateFormat.parse("2017-04-01");
+        Date finishDate2 = simpleDateFormat.parse("2017-06-14");
+        library.takeBook("Sara", "Petrovich", "Conor",
+                97092389, "Intro to C",
+                startDate2, finishDate2);
+
+        library.returnBook("John", "Ivanovich", "Conor", 97094325, "Intro to Java");
+
+
+
+        DataManager.serializeToFileBooking(library.getBookings());
+
+
+
+
+
+        // ============================= Show data =======================
+
+        Library library2 = new Library();
+        Set<Booking> bookings = DataManager.deserializeFromFileBookings();
+        library2.setBookings(bookings);
+
+        library2.showAllData();
 
     }
 
@@ -83,15 +142,17 @@ public class Main {
         library.buyBook("Intro to Java", "Petrov", "124587ps", 5, 1987);
         library.buyBook("Intro to C", "Stepanov", "234162ps", 2, 1999);
 
-        Date startDate1 =new SimpleDateFormat().parse("2017-04-05");
-        Date finishDate1 =new SimpleDateFormat().parse("2017-05-05");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date startDate1 = simpleDateFormat.parse("2017-04-05");
+        Date finishDate1 = simpleDateFormat.parse("2017-05-05");
         library.takeBook("John", "Ivanovich",
                             "Conor", 97094325, "Intro to Java",
                                 startDate1, finishDate1);
 
 
-        Date startDate2 =new SimpleDateFormat().parse("2017-04-01");
-        Date finishDate2 =new SimpleDateFormat().parse("2017-06-14");
+        Date startDate2 = simpleDateFormat.parse("2017-04-01");
+        Date finishDate2 = simpleDateFormat.parse("2017-06-14");
         library.takeBook("Sara", "Petrovich", "Conor",
                             97092389, "Intro to C",
                                 startDate2, finishDate2);
