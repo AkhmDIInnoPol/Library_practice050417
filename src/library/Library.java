@@ -59,7 +59,7 @@ public class Library {
 
     public void takeBook(String firstName, String secondName,
                          String lastName, long pasportNumber,
-                         String title, Date startDate, Date finishDate)
+                         String title, Date startDate, Date finishDate, String signature)
 
     {
         Object[] reader = readers.stream()
@@ -73,7 +73,7 @@ public class Library {
         }
         else
         {
-            tempReader =  new Reader(pasportNumber,firstName,secondName,lastName);
+            tempReader =  new Reader(pasportNumber,firstName,secondName,lastName, signature);
             readers.add(tempReader);
         }
 
@@ -89,7 +89,7 @@ public class Library {
             System.out.println("No such book");
             return;
         }
-        Booking booking = new Booking(bookInstance, tempReader, startDate, finishDate);
+        Booking booking = new Booking(bookInstance, tempReader, startDate, finishDate, signature);
         bookings.add(booking);
 
         store.remove(bookInstance);
@@ -106,9 +106,9 @@ public class Library {
 
     public void returnBook(String firstName, String secondName,
                            String lastName, long pasportNumber,
-                           String title)
+                           String title, String signature)
     {
-        Reader reader = new Reader(pasportNumber, firstName, secondName, lastName);
+        Reader reader = new Reader(pasportNumber, firstName, secondName, lastName, signature);
         Booking booking = (Booking) bookings.stream().filter((b)-> b.getBookInstance().getBook().getTitle().equals(title) && 
                                                     b.getReader().equals(reader)).toArray()[0];
         

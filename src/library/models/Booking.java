@@ -1,12 +1,12 @@
 package library.models;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Date;
 
 /**
  * Created by admin on 05.04.2017.
  */
-public class Booking implements Serializable {
+public class Booking implements Externalizable {
 
     private BookInstance bookInstance;
     private Reader reader;
@@ -15,12 +15,18 @@ public class Booking implements Serializable {
     private Date returnDate;
     private static long serialVersionUID = 1L;
 
+    private String signature;
 
-    public Booking(BookInstance bookInstance, Reader reader, Date startDate, Date finishDate) {
+    public Booking() {
+    }
+
+    public Booking(BookInstance bookInstance, Reader reader, Date startDate,
+                   Date finishDate, String signature) {
         this.bookInstance = bookInstance;
         this.reader = reader;
         this.startDate = startDate;
         this.finishDate = finishDate;
+        this.signature = signature;
     }
 
     public Date getReturnDate() {
@@ -65,6 +71,7 @@ public class Booking implements Serializable {
                 ", startDate=" + startDate +
                 ", finishDate=" + finishDate +
                 ", returnDate=" + returnDate +
+                ", signature=" + signature +
                 '}';
     }
 
@@ -75,5 +82,26 @@ public class Booking implements Serializable {
 
     public Reader getReader() {
         return reader;
+    }
+
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(bookInstance);
+        out.writeObject(reader);
+        out.writeObject(startDate);
+        out.writeObject(finishDate);
+        out.writeObject(returnDate);
+        out.writeObject(signature);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        bookInstance = (BookInstance) in.readObject();
+        reader = (Reader) in.readObject();
+        startDate = (Date) in.readObject();
+        finishDate = (Date) in.readObject();
+        returnDate = (Date) in.readObject();
+        signature = (String) in.readObject();
     }
 }

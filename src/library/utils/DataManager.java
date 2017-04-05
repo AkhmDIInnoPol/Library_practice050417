@@ -14,6 +14,56 @@ public class DataManager {
 
 
 
+
+    public static void externalizeToFileBooking(Set<Booking> bookings)
+    {
+        try(FileOutputStream fos = new FileOutputStream("bookings.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (Booking booking: bookings)
+            {
+                oos.writeObject(booking);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    public static Set<Booking> unexternalizeFromFileBookings()
+    {
+        Set<Booking> bookings = new HashSet<>();
+        try(FileInputStream fis = new FileInputStream("bookings.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
+            Booking booking = null;
+            while ( (booking = (Booking) ois.readObject()) != null)
+            {
+                bookings.add(booking);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            return bookings;
+        }
+
+
+    }
+
+
+
+
+
+
     public static void externalizeToFileBooks(Set<Book> books)
     {
         try(FileOutputStream fos = new FileOutputStream("books.txt");
@@ -60,19 +110,13 @@ public class DataManager {
 
 
 
-
-
-
-
-
-
-    public static void serializeToFileBooks(Set<Book> books)
+    public static void externalizeToFileReaders(Set<Reader> readers)
     {
-        try(FileOutputStream fos = new FileOutputStream("books.txt");
+        try(FileOutputStream fos = new FileOutputStream("readers.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            for (Book book: books)
+            for (Reader reader: readers)
             {
-                oos.writeObject(book);
+                oos.writeObject(reader);
             }
         }
         catch (IOException e)
@@ -84,15 +128,15 @@ public class DataManager {
 
 
 
-    public static Set<Book> deserializeFromFileBooks()
+    public static Set<Reader> unexternalizeFromFileReaders()
     {
-        Set<Book> books = new HashSet<>();
-        try(FileInputStream fis = new FileInputStream("books.txt");
+        Set<Reader> readers = new HashSet<>();
+        try(FileInputStream fis = new FileInputStream("readers.txt");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            Book book = null;
-            while ( (book = (Book) ois.readObject()) != null)
+            Reader reader = null;
+            while ( (reader = (Reader) ois.readObject()) != null)
             {
-                books.add(book);
+                readers.add(reader);
             }
         }
         catch (IOException e)
@@ -103,12 +147,18 @@ public class DataManager {
         {
             e.printStackTrace();
         }
-       finally {
-            return books;
+        finally {
+            return readers;
         }
 
 
     }
+
+
+
+
+
+
 
 
 
